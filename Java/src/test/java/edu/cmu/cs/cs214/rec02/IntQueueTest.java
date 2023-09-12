@@ -24,7 +24,8 @@ import static org.junit.Assert.*;
  */
 public class IntQueueTest {
 
-    private IntQueue mQueue;
+    // private IntQueue mQueue;
+    private ArrayIntQueue mQueue;
     private List<Integer> testList;
 
     /**
@@ -33,11 +34,18 @@ public class IntQueueTest {
     @Before
     public void setUp() {
         // comment/uncomment these lines to test each class
-        mQueue = new LinkedIntQueue();
-//        mQueue = new ArrayIntQueue();
+        // mQueue = new LinkedIntQueue();
+       mQueue = new ArrayIntQueue();
 
         testList = new ArrayList<>(List.of(1, 2, 3));
     }
+
+    @Test
+    public void testclear() {
+        mQueue.clear();
+        assertTrue(mQueue.isEmpty());
+    }
+    
 
     @Test
     public void testIsEmpty() {
@@ -78,6 +86,8 @@ public class IntQueueTest {
             assertEquals(testList.get(i), mQueue.dequeue());
             assertEquals(testList.size() - i - 1, mQueue.size());
         }
+        mQueue.clear();
+        assertNull(mQueue.dequeue());
     }
 
     @Test
